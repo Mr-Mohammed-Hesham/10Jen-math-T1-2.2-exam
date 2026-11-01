@@ -1,0 +1,913 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>📐 Grade 10 Math Exam - Exponents & Scientific Notation | Mr. Mohammed Hesham</title>
+<meta name="description" content="امتحان تفاعلي عن خصائص الأسس والكتابة العلمية - رياضيات 10 عام">
+<meta name="author" content="Mr. Mohammed Hesham">
+<script src="https://cdn.tailwindcss.com"></script>
+<script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;900&family=Inter:wght@400;600;700&family=Amiri:wght@400;700&display=swap" rel="stylesheet">
+<style>
+body { font-family: 'Cairo', sans-serif; background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%); }
+body.en-mode { font-family: 'Inter', sans-serif; }
+.arabic-math { font-family: 'Amiri', 'Cairo', serif; }
+.correct { background-color: #dcfce7 !important; border-color: #16a34a !important; }
+.incorrect { background-color: #fee2e2 !important; border-color: #dc2626 !important; }
+.timer-warning { color: #dc2626 !important; animation: pulse 1s infinite; }
+@keyframes pulse { 50% { opacity: 0.7; } }
+@media print { .no-print { display: none !important; } }
+.success-badge { display: inline-block; padding: 4px 12px; border-radius: 20px; font-weight: bold; font-size: 0.875rem; }
+.grade-excellent { background: #dcfce7; color: #166534; }
+.grade-good { background: #fef3c7; color: #92400e; }
+.grade-pass { background: #dbeafe; color: #1e40af; }
+.grade-fail { background: #fee2e2; color: #991b1b; }
+.lang-switch { position: fixed; top: 16px; left: 16px; z-index: 100; background: white; padding: 6px; border-radius: 30px; box-shadow: 0 4px 15px rgba(0,0,0,0.15); display: flex; gap: 4px; border: 2px solid #d97706; }
+[dir="ltr"] .lang-switch { left: auto; right: 16px; }
+.lang-btn { padding: 6px 14px; border-radius: 20px; cursor: pointer; font-weight: bold; transition: all 0.3s; border: none; font-size: 0.875rem; background: transparent; color: #6b7280; }
+.lang-btn.active { background: #d97706; color: white; box-shadow: 0 2px 6px rgba(217,119,6,0.4); }
+.shuffle-badge { display: inline-block; background: linear-gradient(135deg, #d97706, #b45309); color: white; padding: 4px 12px; border-radius: 20px; font-size: 0.75rem; font-weight: bold; margin-right: 8px; }
+.math-display { display: inline-block; direction: ltr; font-family: 'Amiri', serif; font-size: 1.1em; padding: 2px 6px; background: #fef3c7; border-radius: 4px; margin: 2px; color: #92400e; font-weight: 600; }
+.save-indicator { position: fixed; bottom: 20px; left: 20px; z-index: 200; background: #10b981; color: white; padding: 8px 16px; border-radius: 20px; font-size: 0.8rem; font-weight: bold; opacity: 0; transition: opacity 0.3s; pointer-events: none; }
+.save-indicator.show { opacity: 1; }
+.formula-box { background: #fef3c7; border: 2px solid #f59e0b; border-radius: 8px; padding: 12px; margin: 10px 0; font-family: 'Amiri', serif; direction: ltr; text-align: center; }
+.svg-graph { display: block; margin: 12px auto; background: white; border: 2px solid #e5e7eb; border-radius: 12px; padding: 8px; }
+.graph-container { text-align: center; margin: 10px 0; }
+.module-badge { display: inline-block; padding: 4px 16px; border-radius: 20px; font-weight: bold; font-size: 0.85rem; margin-bottom: 8px; }
+.module-1 { background: #fef3c7; color: #92400e; }
+.module-2 { background: #dbeafe; color: #1e40af; }
+.module-3 { background: #fce7f3; color: #9f1239; }
+.module-4 { background: #ecfdf5; color: #065f46; }
+.answer-input { width: 100%; min-height: 80px; padding: 10px; border: 2px solid #d1d5db; border-radius: 8px; font-size: 1rem; font-family: 'Amiri', serif; direction: ltr; text-align: center; background: white; transition: border-color 0.3s; resize: vertical; }
+.answer-input:focus { outline: none; border-color: #d97706; box-shadow: 0 0 0 3px rgba(217,119,6,0.1); }
+.answer-input.correct-input { border-color: #16a34a; background: #dcfce7; }
+.answer-input.incorrect-input { border-color: #dc2626; background: #fee2e2; }
+.check-btn { background: linear-gradient(135deg, #d97706, #b45309); color: white; padding: 8px 20px; border-radius: 8px; font-weight: bold; cursor: pointer; transition: all 0.3s; border: none; }
+.check-btn:hover { background: linear-gradient(135deg, #b45309, #92400e); transform: scale(1.05); }
+.show-answer-btn { background: #6b7280; color: white; padding: 6px 16px; border-radius: 8px; font-size: 0.875rem; cursor: pointer; border: none; margin-top: 8px; }
+.show-answer-btn:hover { background: #4b5563; }
+.solution-box { background: #f0fdf4; border: 2px solid #16a34a; border-radius: 8px; padding: 12px; margin-top: 10px; display: none; }
+.solution-box.show { display: block; }
+</style>
+</head>
+<body class="p-4 md:p-8 min-h-screen">
+
+<div class="lang-switch no-print">
+<button class="lang-btn active" onclick="setLanguage('ar')" id="btn-ar">عربي</button>
+<button class="lang-btn" onclick="setLanguage('en')" id="btn-en">EN</button>
+</div>
+
+<div id="saveIndicator" class="save-indicator">💾 <span data-ar="تم الحفظ" data-en="Saved">تم الحفظ</span></div>
+
+<div id="timer-container" class="max-w-5xl mx-auto mb-4 text-center no-print">
+<div class="bg-white p-4 rounded-2xl shadow-lg inline-block border-2 border-amber-100">
+<span class="text-gray-600 ml-2"> الوقت المتبقي:</span>
+<span id="timer" class="text-2xl font-bold text-amber-700 font-mono">90:00</span>
+<span class="shuffle-badge">📐 Exponents & Scientific Notation - 25 سؤال</span>
+</div>
+</div>
+
+<div class="max-w-5xl mx-auto mb-6 flex flex-wrap gap-3 justify-center no-print">
+<button onclick="checkAllAnswers()" class="bg-emerald-700 hover:bg-emerald-800 text-white px-5 py-2 rounded-xl font-medium transition shadow">✅ تحقق من جميع الإجابات</button>
+<button onclick="showAllSolutions()" class="bg-blue-700 hover:bg-blue-800 text-white px-5 py-2 rounded-xl font-medium transition shadow">📖 إظهار جميع الحلول</button>
+<button onclick="window.print()" class="bg-gray-700 hover:bg-gray-900 text-white px-5 py-2 rounded-xl font-medium transition shadow">🖨️ طباعة</button>
+<button onclick="clearAllAnswers()" class="bg-red-500 hover:bg-red-600 text-white px-5 py-2 rounded-xl font-medium transition shadow">🗑️ مسح جميع الإجابات</button>
+</div>
+
+<header class="max-w-5xl mx-auto bg-white p-8 rounded-3xl shadow-2xl mb-8 border-4 border-amber-500">
+<div class="text-center">
+<div class="inline-block bg-amber-700 text-white px-6 py-2 rounded-full text-sm font-bold mb-4">MATH GRADE 10 GENERAL</div>
+<h1 class="text-3xl md:text-4xl font-bold text-gray-900 mb-4">📐 خصائص قسمة الأسس والكتابة العلمية</h1>
+<h2 class="text-xl text-amber-700 font-semibold mb-2">رياضيات 10 عام - ورقة عمل</h2>
+<p class="text-gray-600 mb-4">Properties of Exponents Division & Scientific Notation</p>
+<p class="text-sm text-green-600 font-semibold">💾 يتم حفظ تقدمك تلقائياً - 25 سؤالاً (15 اختياري + 10 كتابي)</p>
+</div>
+<div class="mt-6 flex flex-wrap justify-center gap-4 text-sm text-gray-600">
+<span>📅 التاريخ: <input type="text" id="examDate" class="border-b-2 border-amber-300 bg-transparent w-32 text-center"></span>
+<span>😊 الاسم: <input type="text" id="studentName" class="border-b-2 border-amber-300 bg-transparent w-40 text-center" placeholder="اكتب اسمك"></span>
+<span>🏫 الشعبة: <input type="text" id="studentClass" class="border-b-2 border-amber-300 bg-transparent w-32 text-center" placeholder="الشعبة"></span>
+<span>⏰ المدة: 90 دقيقة</span>
+<span>📊 المجموع: 100 درجة</span>
+</div>
+</header>
+
+<div class="max-w-5xl mx-auto mb-6 bg-white p-4 rounded-xl shadow-lg border-2 border-amber-200 no-print">
+<h3 class="font-bold text-lg mb-3 text-amber-800 text-center">📐 القوانين الأساسية</h3>
+<div class="grid md:grid-cols-3 gap-3 text-sm">
+<div class="formula-box"><strong>a^m / a^n = a^(m-n)</strong><br>Quotient Rule</div>
+<div class="formula-box"><strong>(a^m)^n = a^(mn)</strong><br>Power Rule</div>
+<div class="formula-box"><strong>a^0 = 1</strong><br>Zero Exponent</div>
+<div class="formula-box"><strong>a^(-n) = 1/a^n</strong><br>Negative Exponent</div>
+<div class="formula-box"><strong>Scientific Notation: a × 10^n</strong><br>where 1 ≤ |a| < 10</div>
+<div class="formula-box"><strong>1 ألف = 10³, 1 مليون = 10⁶</strong><br>1 مليار = 10⁹, 1 تريليون = 10¹²</div>
+</div>
+</div>
+
+<main class="max-w-5xl mx-auto space-y-8" id="exam-content"></main>
+
+<div class="text-center no-print pb-8 mt-8">
+<button onclick="gradeExam()" class="bg-gradient-to-r from-amber-700 to-orange-600 hover:from-amber-800 hover:to-orange-700 text-white text-lg px-12 py-4 rounded-2xl font-bold shadow-xl transition transform hover:scale-105">🎯 صحح الامتحان!</button>
+</div>
+
+<div id="results-panel" class="max-w-5xl mx-auto mt-8 bg-white p-8 rounded-3xl shadow-2xl border-4 border-amber-500 hidden no-print">
+<h2 class="text-3xl font-bold text-gray-900 mb-6 text-center">🏆 نتيجتك يا بطل! 🏆</h2>
+<div class="grid md:grid-cols-3 gap-4 mb-6">
+<div class="bg-amber-50 p-4 rounded-xl text-center"><p>😊 الاسم</p><p id="res-name" class="font-bold text-xl text-amber-700">-</p></div>
+<div class="bg-orange-50 p-4 rounded-xl text-center"><p>📅 التاريخ</p><p id="res-date" class="font-bold text-xl text-orange-700">-</p></div>
+<div class="bg-amber-50 p-4 rounded-xl text-center"><p>🌟 المجموع</p><p id="res-total" class="font-bold text-3xl text-amber-700">0 / 100</p></div>
+</div>
+<div class="text-center mb-6">
+<span id="success-badge" class="success-badge grade-excellent">-</span>
+<p id="success-percent" class="text-4xl font-bold text-amber-700 mt-2">0%</p>
+<p class="text-sm text-gray-500">نسبة النجاح</p>
+</div>
+<div class="bg-gray-50 p-6 rounded-xl mb-6">
+<h3 class="font-bold text-lg mb-4 text-gray-800">📊 أدائك في كل قسم:</h3>
+<div class="space-y-3" id="sections-performance"></div>
+</div>
+<div class="text-center">
+<button id="sendEmailBtn" onclick="sendResultsToEmail()" class="bg-gradient-to-r from-amber-700 to-orange-600 text-white text-lg px-8 py-3 rounded-2xl font-bold shadow-xl transition">📧 أرسل النتيجة للمعلم</button>
+<p id="emailStatus" class="text-sm mt-2 text-center font-medium"></p>
+</div>
+</div>
+
+<footer class="max-w-5xl mx-auto mt-10 mb-8 text-center text-gray-500 text-sm no-print">
+© Exponents & Scientific Notation - Grade 10 General | Mr. Mohammed Hesham 
+</footer>
+
+<script>
+const PUBLIC_KEY = "Rb3Lq8tXaFmc5YHUH";
+const SERVICE_ID = "service_w15m64i";
+const TEMPLATE_ID = "template_5b0u2tq";
+const TARGET_EMAIL = "mohammedhesham872@gmail.com";
+emailjs.init(PUBLIC_KEY);
+
+const STORAGE_KEY = 'exponents_scientific_notation_grade10_v1';
+const TOTAL_TIME = 5400;
+const TOTAL_QUESTIONS = 25;
+const TOTAL_SECTIONS = 2;
+
+let currentLang = 'ar';
+let timeRemaining = TOTAL_TIME;
+let timerInterval;
+let saveIndicatorTimeout = null;
+
+// ==================== SVG DIAGRAMS ====================
+const svgGraphs = {
+    exponent_rules: `<svg class="svg-graph" width="400" height="240" viewBox="0 0 400 240" xmlns="http://www.w3.org/2000/svg">
+        <rect x="5" y="5" width="390" height="230" rx="12" fill="#fef3c7" stroke="#f59e0b" stroke-width="2"/>
+        <text x="200" y="25" text-anchor="middle" font-size="14" fill="#92400e" font-weight="bold"> قوانين الأسس - Exponent Rules</text>
+        <rect x="20" y="45" width="170" height="80" rx="6" fill="#fde68a" stroke="#f59e0b" stroke-width="2"/>
+        <text x="105" y="65" text-anchor="middle" font-size="11" fill="#92400e" font-weight="bold">Quotient Rule</text>
+        <text x="105" y="85" text-anchor="middle" font-size="12" fill="#92400e" font-family="'Amiri', serif">a^m / a^n = a^(m-n)</text>
+        <text x="105" y="105" text-anchor="middle" font-size="10" fill="#92400e">Example: x⁵/x² = x³</text>
+        <rect x="210" y="45" width="170" height="80" rx="6" fill="#fde68a" stroke="#f59e0b" stroke-width="2"/>
+        <text x="295" y="65" text-anchor="middle" font-size="11" fill="#92400e" font-weight="bold">Power Rule</text>
+        <text x="295" y="85" text-anchor="middle" font-size="12" fill="#92400e" font-family="'Amiri', serif">(a^m)^n = a^(mn)</text>
+        <text x="295" y="105" text-anchor="middle" font-size="10" fill="#92400e">Example: (x²)³ = x</text>
+        <rect x="20" y="135" width="170" height="80" rx="6" fill="#fde68a" stroke="#f59e0b" stroke-width="2"/>
+        <text x="105" y="155" text-anchor="middle" font-size="11" fill="#92400e" font-weight="bold">Zero Exponent</text>
+        <text x="105" y="175" text-anchor="middle" font-size="12" fill="#92400e" font-family="'Amiri', serif">a⁰ = 1</text>
+        <text x="105" y="195" text-anchor="middle" font-size="10" fill="#92400e">Example: 5⁰ = 1</text>
+        <rect x="210" y="135" width="170" height="80" rx="6" fill="#fde68a" stroke="#f59e0b" stroke-width="2"/>
+        <text x="295" y="155" text-anchor="middle" font-size="11" fill="#92400e" font-weight="bold">Negative Exponent</text>
+        <text x="295" y="175" text-anchor="middle" font-size="12" fill="#92400e" font-family="'Amiri', serif">a^(-n) = 1/a^n</text>
+        <text x="295" y="195" text-anchor="middle" font-size="10" fill="#92400e">Example: x^(-2) = 1/x²</text>
+    </svg>`,
+    
+    scientific_notation: `<svg class="svg-graph" width="400" height="260" viewBox="0 0 400 260" xmlns="http://www.w3.org/2000/svg">
+        <rect x="5" y="5" width="390" height="250" rx="12" fill="#dbeafe" stroke="#2563eb" stroke-width="2"/>
+        <text x="200" y="25" text-anchor="middle" font-size="14" fill="#1e40af" font-weight="bold"> الكتابة العلمية - Scientific Notation</text>
+        <rect x="20" y="45" width="360" height="50" rx="6" fill="#bfdbfe" stroke="#2563eb" stroke-width="2"/>
+        <text x="200" y="75" text-anchor="middle" font-size="12" fill="#1e40af" font-family="'Amiri', serif">a × 10^n where 1 ≤ |a| < 10</text>
+        <rect x="20" y="105" width="170" height="130" rx="6" fill="#bfdbfe" stroke="#2563eb" stroke-width="2"/>
+        <text x="105" y="125" text-anchor="middle" font-size="11" fill="#1e40af" font-weight="bold">Large Numbers</text>
+        <text x="105" y="145" text-anchor="middle" font-size="10" fill="#1e40af">1 ألف = 10³</text>
+        <text x="105" y="165" text-anchor="middle" font-size="10" fill="#1e40af">1 مليون = 10⁶</text>
+        <text x="105" y="185" text-anchor="middle" font-size="10" fill="#1e40af">1 مليار = 10⁹</text>
+        <text x="105" y="205" text-anchor="middle" font-size="10" fill="#1e40af">1 تريليون = 10¹²</text>
+        <rect x="210" y="105" width="170" height="130" rx="6" fill="#bfdbfe" stroke="#2563eb" stroke-width="2"/>
+        <text x="295" y="125" text-anchor="middle" font-size="11" fill="#1e40af" font-weight="bold">Examples</text>
+        <text x="295" y="145" text-anchor="middle" font-size="10" fill="#1e40af">52,199 billion = 5.2199 × 10¹³</text>
+        <text x="295" y="165" text-anchor="middle" font-size="10" fill="#1e40af">174,850 = 1.7485 × 10⁵</text>
+        <text x="295" y="185" text-anchor="middle" font-size="10" fill="#1e40af">3.95 million = 3.95 × 10⁶</text>
+        <text x="295" y="205" text-anchor="middle" font-size="10" fill="#1e40af">208 million = 2.08 × 10⁸</text>
+        <text x="200" y="245" text-anchor="middle" font-size="11" fill="#1e40af">Move decimal point to get number between 1 and 10</text>
+    </svg>`,
+    
+    gdp_problem: `<svg class="svg-graph" width="400" height="280" viewBox="0 0 400 280" xmlns="http://www.w3.org/2000/svg">
+        <rect x="5" y="5" width="390" height="270" rx="12" fill="#fce7f3" stroke="#ec4899" stroke-width="2"/>
+        <text x="200" y="25" text-anchor="middle" font-size="14" fill="#9f1239" font-weight="bold">📊 مسألة GDP - Problem 18</text>
+        <rect x="20" y="45" width="360" height="60" rx="6" fill="#fbcfe8" stroke="#ec4899" stroke-width="2"/>
+        <text x="200" y="65" text-anchor="middle" font-size="11" fill="#9f1239">GDP USA 2008 = $52,199 billion = 5.2199 × 10¹³</text>
+        <text x="200" y="85" text-anchor="middle" font-size="11" fill="#9f1239">Per capita GDP = $174,850 = 1.7485 × 10⁵</text>
+        <rect x="20" y="115" width="360" height="80" rx="6" fill="#fbcfe8" stroke="#ec4899" stroke-width="2"/>
+        <text x="200" y="135" text-anchor="middle" font-size="11" fill="#9f1239" font-family="'Amiri', serif">Population = GDP / Per capita GDP</text>
+        <text x="200" y="155" text-anchor="middle" font-size="11" fill="#9f1239">= (5.2199 × 10¹³) / (1.7485 × 10⁵)</text>
+        <text x="200" y="175" text-anchor="middle" font-size="11" fill="#9f1239">= 2.985 × 10⁸ ≈ 300 million</text>
+        <rect x="20" y="205" width="360" height="50" rx="6" fill="#fef3c7" stroke="#f59e0b" stroke-width="2"/>
+        <text x="200" y="225" text-anchor="middle" font-size="11" fill="#92400e" font-weight="bold">Answer: ≈ 3 × 10⁸ people (300 million)</text>
+        <text x="200" y="245" text-anchor="middle" font-size="10" fill="#92400e">Use scientific notation for large numbers</text>
+    </svg>`,
+    
+    internet_problem: `<svg class="svg-graph" width="400" height="300" viewBox="0 0 400 300" xmlns="http://www.w3.org/2000/svg">
+        <rect x="5" y="5" width="390" height="290" rx="12" fill="#ecfdf5" stroke="#10b981" stroke-width="2"/>
+        <text x="200" y="25" text-anchor="middle" font-size="14" fill="#065f46" font-weight="bold">🌐 مسألة الإنترنت - Problem 43</text>
+        <rect x="20" y="45" width="360" height="60" rx="6" fill="#d1fae5" stroke="#10b981" stroke-width="2"/>
+        <text x="200" y="65" text-anchor="middle" font-size="11" fill="#065f46">Web pages = 3.95 million = 3.95 × 10⁶</text>
+        <text x="200" y="85" text-anchor="middle" font-size="11" fill="#065f46">Internet users = 208 million = 2.08 × 10⁸</text>
+        <rect x="20" y="115" width="360" height="90" rx="6" fill="#d1fae5" stroke="#10b981" stroke-width="2"/>
+        <text x="200" y="135" text-anchor="middle" font-size="11" fill="#065f46" font-family="'Amiri', serif">Ratio = Users / Web pages</text>
+        <text x="200" y="155" text-anchor="middle" font-size="11" fill="#065f46">= (2.08 × 10⁸) / (3.95 × 10⁶)</text>
+        <text x="200" y="175" text-anchor="middle" font-size="11" fill="#065f46">= 0.527 × 10² = 52.7</text>
+        <text x="200" y="195" text-anchor="middle" font-size="11" fill="#065f46">≈ 53 users per web page</text>
+        <rect x="20" y="215" width="360" height="35" rx="6" fill="#fef3c7" stroke="#f59e0b" stroke-width="2"/>
+        <text x="200" y="237" text-anchor="middle" font-size="11" fill="#92400e" font-weight="bold">Answer: ≈ 53 users per page</text>
+        <text x="200" y="257" text-anchor="middle" font-size="10" fill="#92400e">Or: 10⁸/10⁶ = 10² = 100 times more users</text>
+        <text x="200" y="277" text-anchor="middle" font-size="10" fill="#92400e">Each user has access to many pages</text>
+    </svg>`
+};
+
+// ==================== EXAM DATA - 25 QUESTIONS (15 MC + 10 Written) ====================
+const examQuestions = [
+    // Section 1: Multiple Choice (15 questions) - Simplifying exponents
+    {
+        id: 1, section: 1, type: 'mc',
+        q: { ar: '<strong>س1 (مثل السؤال 1):</strong> بسّط: t⁵u⁴/t²u', en: '<strong>Q1 (like Question 1):</strong> Simplify: t⁵u⁴/t²u' },
+        options: [
+            { ar: '<span class="math-display">t³u³</span>', en: '<span class="math-display">t³u³</span>' },
+            { ar: '<span class="math-display">t⁷u</span>', en: '<span class="math-display">t⁷u⁵</span>' },
+            { ar: '<span class="math-display">t³u⁴</span>', en: '<span class="math-display">t³u⁴</span>' },
+            { ar: '<span class="math-display">t²u³</span>', en: '<span class="math-display">t²u³</span>' }
+        ],
+        correct: 0,
+        answer: { ar: 't⁵/t² = t³, u⁴/u = u³. إذن t³u³', en: 't⁵/t² = t³, u⁴/u = u³. So t³u³' }
+    },
+    {
+        id: 2, section: 1, type: 'mc',
+        q: { ar: '<strong>س2 (مثل السؤال 2):</strong> بسّط: a⁶b⁴c¹⁰/a³b²c', en: '<strong>Q2 (like Question 2):</strong> Simplify: a⁶b⁴c¹⁰/a³b²c' },
+        options: [
+            { ar: '<span class="math-display">a³b²c⁹</span>', en: '<span class="math-display">a³b²c⁹</span>' },
+            { ar: '<span class="math-display">ab⁶c¹¹</span>', en: '<span class="math-display">ab⁶c¹¹</span>' },
+            { ar: '<span class="math-display">a²b²c⁹</span>', en: '<span class="math-display">a²b²c⁹</span>' },
+            { ar: '<span class="math-display">a³b²c¹⁰</span>', en: '<span class="math-display">a³b²c¹⁰</span>' }
+        ],
+        correct: 0,
+        answer: { ar: 'a⁶/a³ = a³, b⁴/b² = b², c¹⁰/c = c⁹. إذن a³b²c⁹', en: 'a⁶/a³ = a³, b⁴/b² = b², c¹⁰/c = c⁹. So a³b²c⁹' }
+    },
+    {
+        id: 3, section: 1, type: 'mc',
+        q: { ar: '<strong>س3 (مثل السؤال 3):</strong> بسّط: m⁶r⁵p²/m⁵r²p³', en: '<strong>Q3 (like Question 3):</strong> Simplify: mr⁵p²/m⁵r²p³' },
+        options: [
+            { ar: '<span class="math-display">mr³/p</span>', en: '<span class="math-display">mr³/p</span>' },
+            { ar: '<span class="math-display">m¹¹r⁷p⁵</span>', en: '<span class="math-display">m¹¹r⁷p⁵</span>' },
+            { ar: '<span class="math-display">mr³p</span>', en: '<span class="math-display">mr³p</span>' },
+            { ar: '<span class="math-display">m/p</span>', en: '<span class="math-display">m/p</span>' }
+        ],
+        correct: 0,
+        answer: { ar: 'm⁶/m⁵ = m, r⁵/r² = r³, p²/p³ = 1/p. إذن mr³/p', en: 'm⁶/m = m, r⁵/r² = r³, p²/p³ = 1/p. So mr³/p' }
+    },
+    {
+        id: 4, section: 1, type: 'mc',
+        q: { ar: '<strong>س4 (مثل السؤال 5):</strong> بسّط: g⁸h²m/hg⁷', en: '<strong>Q4 (like Question 5):</strong> Simplify: g⁸h²m/hg⁷' },
+        options: [
+            { ar: '<span class="math-display">ghm</span>', en: '<span class="math-display">ghm</span>' },
+            { ar: '<span class="math-display">g¹⁵h³m</span>', en: '<span class="math-display">g¹h³m</span>' },
+            { ar: '<span class="math-display">gh²m</span>', en: '<span class="math-display">gh²m</span>' },
+            { ar: '<span class="math-display">g⁸hm</span>', en: '<span class="math-display">g⁸hm</span>' }
+        ],
+        correct: 0,
+        answer: { ar: 'g⁸/g⁷ = g, h²/h = h, m يبقى. إذن ghm', en: 'g⁸/g⁷ = g, h²/h = h, m stays. So ghm' }
+    },
+    {
+        id: 5, section: 1, type: 'mc',
+        q: { ar: '<strong>س5 (مثل السؤال 6):</strong> بسّط: r⁴tv²/t²v²', en: '<strong>Q5 (like Question 6):</strong> Simplify: r⁴t⁷v²/t²v²' },
+        options: [
+            { ar: '<span class="math-display">r⁴t</span>', en: '<span class="math-display">r⁴t⁵</span>' },
+            { ar: '<span class="math-display">r⁴t⁹</span>', en: '<span class="math-display">r⁴t⁹</span>' },
+            { ar: '<span class="math-display">r⁴t</span>', en: '<span class="math-display">r⁴t⁷</span>' },
+            { ar: '<span class="math-display">r⁴t⁵v⁴</span>', en: '<span class="math-display">r⁴t⁵v⁴</span>' }
+        ],
+        correct: 0,
+        answer: { ar: 'r⁴ يبقى، t⁷/t² = t, v²/v² = 1. إذن r⁴t⁵', en: 'r⁴ stays, t⁷/t² = t, v²/v² = 1. So r⁴t⁵' }
+    },
+    {
+        id: 6, section: 1, type: 'mc',
+        q: { ar: '<strong>س6 (مثل السؤال 7):</strong> بسّط: x³y²z⁶/z⁵x²y', en: '<strong>Q6 (like Question 7):</strong> Simplify: x³y²z⁶/z⁵x²y' },
+        options: [
+            { ar: '<span class="math-display">xyz</span>', en: '<span class="math-display">xyz</span>' },
+            { ar: '<span class="math-display">x⁵y³z¹¹</span>', en: '<span class="math-display">x⁵y³z¹¹</span>' },
+            { ar: '<span class="math-display">xyz⁶</span>', en: '<span class="math-display">xyz⁶</span>' },
+            { ar: '<span class="math-display">xy/z</span>', en: '<span class="math-display">xy/z</span>' }
+        ],
+        correct: 0,
+        answer: { ar: 'x³/x² = x, y²/y = y, z⁶/z⁵ = z. إذن xyz', en: 'x³/x² = x, y²/y = y, z/z⁵ = z. So xyz' }
+    },
+    {
+        id: 7, section: 1, type: 'mc',
+        q: { ar: '<strong>س7 (مثل السؤال 8):</strong> بسّط: n⁴q⁴w⁶/q²n³w', en: '<strong>Q7 (like Question 8):</strong> Simplify: n⁴q⁴w⁶/q²n³w' },
+        options: [
+            { ar: '<span class="math-display">nq²w⁵</span>', en: '<span class="math-display">nq²w⁵</span>' },
+            { ar: '<span class="math-display">n⁷qw⁷</span>', en: '<span class="math-display">n⁷q⁶w⁷</span>' },
+            { ar: '<span class="math-display">nq²w</span>', en: '<span class="math-display">nq²w</span>' },
+            { ar: '<span class="math-display">nq⁶w⁵</span>', en: '<span class="math-display">nq⁶w⁵</span>' }
+        ],
+        correct: 0,
+        answer: { ar: 'n/n³ = n, q⁴/q² = q², w⁶/w = w. إذن nq²w⁵', en: 'n⁴/n³ = n, q/q² = q², w⁶/w = w⁵. So nq²w⁵' }
+    },
+    {
+        id: 8, section: 1, type: 'mc',
+        q: { ar: '<strong>س8 (مثل السؤال 9):</strong> بسّط: (2a³b⁵/3)²', en: '<strong>Q8 (like Question 9):</strong> Simplify: (2a³b⁵/3)²' },
+        options: [
+            { ar: '<span class="math-display">4a⁶b¹⁰/9</span>', en: '<span class="math-display">4a⁶b¹⁰/9</span>' },
+            { ar: '<span class="math-display">2ab¹⁰/3</span>', en: '<span class="math-display">2a⁶b¹⁰/3</span>' },
+            { ar: '<span class="math-display">4a⁵b⁷/9</span>', en: '<span class="math-display">4a⁵b⁷/9</span>' },
+            { ar: '<span class="math-display">4a⁶b¹⁰/3</span>', en: '<span class="math-display">4a⁶b¹⁰/3</span>' }
+        ],
+        correct: 0,
+        answer: { ar: '2² = 4, (a³)² = a⁶, (b⁵)² = b¹⁰, 3² = 9. إذن 4a⁶b¹⁰/9', en: '2² = 4, (a³)² = a⁶, (b)² = b¹⁰, 3² = 9. So 4a⁶b¹⁰/9' }
+    },
+    {
+        id: 9, section: 1, type: 'mc',
+        q: { ar: '<strong>س9 (مثل السؤال 10):</strong> بسّط: r³v⁻²/t⁻⁷', en: '<strong>Q9 (like Question 10):</strong> Simplify: r³v⁻²/t⁻⁷' },
+        options: [
+            { ar: '<span class="math-display">r³t⁷/v²</span>', en: '<span class="math-display">r³t⁷/v²</span>' },
+            { ar: '<span class="math-display">r³v²t⁷</span>', en: '<span class="math-display">r³v²t⁷</span>' },
+            { ar: '<span class="math-display">r³/v²t⁷</span>', en: '<span class="math-display">r³/v²t⁷</span>' },
+            { ar: '<span class="math-display">r³t⁷v²</span>', en: '<span class="math-display">r³t⁷v²</span>' }
+        ],
+        correct: 0,
+        answer: { ar: 'v² = 1/v² (ينتقل للمقام), t⁻⁷ = 1/t⁷ (ينتقل للبسط). إذن r³t⁷/v²', en: 'v⁻² = 1/v² (moves to denominator), t⁻⁷ = 1/t⁷ (moves to numerator). So r³t⁷/v²' }
+    },
+    {
+        id: 10, section: 1, type: 'mc',
+        q: { ar: '<strong>س10 (مثل السؤال 11):</strong> بسّط: (2c³d/5g²)⁵', en: '<strong>Q10 (like Question 11):</strong> Simplify: (2c³d⁵/5g²)⁵' },
+        options: [
+            { ar: '<span class="math-display">32c¹⁵d²⁵/3125g¹⁰</span>', en: '<span class="math-display">32c¹⁵d²⁵/3125g¹⁰</span>' },
+            { ar: '<span class="math-display">10c¹d²⁵/25g¹⁰</span>', en: '<span class="math-display">10c¹⁵d²⁵/25g¹⁰</span>' },
+            { ar: '<span class="math-display">32c⁸d¹⁰/3125g⁷</span>', en: '<span class="math-display">32cd¹⁰/3125g⁷</span>' },
+            { ar: '<span class="math-display">2c¹⁵d²⁵/5g¹⁰</span>', en: '<span class="math-display">2c¹⁵d²⁵/5g¹</span>' }
+        ],
+        correct: 0,
+        answer: { ar: '2⁵ = 32, (c³)⁵ = c¹⁵, (d⁵)⁵ = d²⁵, 5 = 3125, (g²)⁵ = g¹⁰. إذن 32c¹⁵d²⁵/3125g¹⁰', en: '2⁵ = 32, (c³)⁵ = c¹⁵, (d⁵)⁵ = d²⁵, 5⁵ = 3125, (g²)⁵ = g¹⁰. So 32c¹d²⁵/3125g¹⁰' }
+    },
+    {
+        id: 11, section: 1, type: 'mc',
+        q: { ar: '<strong>س11 (مثل السؤال 12):</strong> بسّط: (-3xyz²/x³yz⁴)', en: '<strong>Q11 (like Question 12):</strong> Simplify: (-3xy⁴z²/x³yz⁴)⁰' },
+        options: [
+            { ar: '<span class="math-display">1</span>', en: '<span class="math-display">1</span>' },
+            { ar: '<span class="math-display">0</span>', en: '<span class="math-display">0</span>' },
+            { ar: '<span class="math-display">-3</span>', en: '<span class="math-display">-3</span>' },
+            { ar: '<span class="math-display">-1</span>', en: '<span class="math-display">-1</span>' }
+        ],
+        correct: 0,
+        answer: { ar: 'أي عدد (غير صفر) مرفوع للأس 0 يساوي 1', en: 'Any number (except zero) raised to power 0 equals 1' }
+    },
+    {
+        id: 12, section: 1, type: 'mc',
+        q: { ar: '<strong>س12 (مثل السؤال 14):</strong> بسّط: 4r²v⁰t⁵/2rt³', en: '<strong>Q12 (like Question 14):</strong> Simplify: 4r²v⁰t⁵/2rt³' },
+        options: [
+            { ar: '<span class="math-display">2rt²</span>', en: '<span class="math-display">2rt²</span>' },
+            { ar: '<span class="math-display">2r²t²</span>', en: '<span class="math-display">2r²t²</span>' },
+            { ar: '<span class="math-display">4rt²</span>', en: '<span class="math-display">4rt²</span>' },
+            { ar: '<span class="math-display">2rt⁸</span>', en: '<span class="math-display">2rt⁸</span>' }
+        ],
+        correct: 0,
+        answer: { ar: '4/2 = 2, r²/r = r, v⁰ = 1, t⁵/t³ = t². إذن 2rt²', en: '4/2 = 2, r²/r = r, v⁰ = 1, t⁵/t³ = t². So 2rt²' }
+    },
+    {
+        id: 13, section: 1, type: 'mc',
+        q: { ar: '<strong>س13 (مثل السؤال 15):</strong> بسّط: f³g²/h⁻⁴', en: '<strong>Q13 (like Question 15):</strong> Simplify: f⁻³g²/h⁻⁴' },
+        options: [
+            { ar: '<span class="math-display">g²h⁴/f³</span>', en: '<span class="math-display">g²h⁴/f³</span>' },
+            { ar: '<span class="math-display">f³g²h⁴</span>', en: '<span class="math-display">f³g²h⁴</span>' },
+            { ar: '<span class="math-display">g²/f³h⁴</span>', en: '<span class="math-display">g²/f³h⁴</span>' },
+            { ar: '<span class="math-display">f³g²/h⁴</span>', en: '<span class="math-display">f³g²/h⁴</span>' }
+        ],
+        correct: 0,
+        answer: { ar: 'f⁻³ = 1/f³ (ينتقل للمقام), h⁻⁴ = 1/h⁴ (ينتقل للبسط). إذن g²h/f³', en: 'f⁻³ = 1/f³ (moves to denominator), h⁻⁴ = 1/h⁴ (moves to numerator). So g²h⁴/f³' }
+    },
+    {
+        id: 14, section: 1, type: 'mc',
+        q: { ar: '<strong>س14 (مثل السؤال 16):</strong> بسّط: -8x²y⁸z⁻⁵/12x⁴y⁻⁷z⁷', en: '<strong>Q14 (like Question 16):</strong> Simplify: -8x²y⁸z⁻/12x⁴y⁻z⁷' },
+        options: [
+            { ar: '<span class="math-display">-2y¹⁵/3x²z¹²</span>', en: '<span class="math-display">-2y¹⁵/3x²z¹²</span>' },
+            { ar: '<span class="math-display">-2y/3x²z²</span>', en: '<span class="math-display">-2y/3x²z²</span>' },
+            { ar: '<span class="math-display">-2y¹⁵/3xz¹²</span>', en: '<span class="math-display">-2y¹⁵/3x⁶z¹²</span>' },
+            { ar: '<span class="math-display">-2y/3x⁶z²</span>', en: '<span class="math-display">-2y/3x⁶z²</span>' }
+        ],
+        correct: 0,
+        answer: { ar: '-8/12 = -2/3, x²/x⁴ = 1/x², y⁸/y⁻⁷ = y¹⁵, z⁻⁵/z = 1/z¹². إذن -2y¹⁵/3x²z¹²', en: '-8/12 = -2/3, x²/x⁴ = 1/x², y⁸/y⁻⁷ = y¹⁵, z⁻⁵/z⁷ = 1/z¹². So -2y¹⁵/3x²z¹²' }
+    },
+    {
+        id: 15, section: 1, type: 'mc',
+        q: { ar: '<strong>س15 (مثل السؤال 17):</strong> بسّط: 2a²b⁻⁷c¹⁰/6a⁻³b²c⁻³', en: '<strong>Q15 (like Question 17):</strong> Simplify: 2a²b⁻⁷c¹⁰/6a⁻³b²c³' },
+        options: [
+            { ar: '<span class="math-display">a⁵c¹³/3b⁹</span>', en: '<span class="math-display">a⁵c¹³/3b⁹</span>' },
+            { ar: '<span class="math-display">a⁵c⁷/3b⁹</span>', en: '<span class="math-display">a⁵c⁷/3b⁹</span>' },
+            { ar: '<span class="math-display">a⁻¹c¹³/3b⁻⁵</span>', en: '<span class="math-display">a⁻¹c¹³/3b⁻⁵</span>' },
+            { ar: '<span class="math-display">a⁵c¹³/3b⁵</span>', en: '<span class="math-display">a⁵c¹³/3b⁵</span>' }
+        ],
+        correct: 0,
+        answer: { ar: '2/6 = 1/3, a²/a⁻³ = a⁵, b⁻/b² = 1/b⁹, c¹⁰/c⁻³ = c¹³. إذن a⁵c¹³/3b⁹', en: '2/6 = 1/3, a²/a⁻³ = a⁵, b⁻⁷/b² = 1/b⁹, c¹⁰/c³ = c¹³. So a⁵c¹³/3b⁹' }
+    },
+    // Section 2: Written Questions (10 questions)
+    {
+        id: 16, section: 2, type: 'written',
+        q: { ar: '<strong>س16 (كتابي - مثل السؤال 18):</strong> الناتج المحلي الإجمالي (GDP) للولايات المتحدة في عام 2008 كان 52,199 تريليون دولار. وكان نصيب الفرد من الناتج المحلي الإجمالي $174,850. استخدم رتبة المقدار لتقدير عدد السكان في الولايات المتحدة في عام 2008.', en: '<strong>Q16 (Written - like Question 18):</strong> GDP of USA in 2008 was $52,199 billion. Per capita GDP was $174,850. Use order of magnitude to estimate the population of USA in 2008.' },
+        svg: svgGraphs.gdp_problem,
+        answer: { ar: '≈ 3 × 10⁸ (300 مليون)', en: '≈ 3 × 10⁸ (300 million)' },
+        solution: { ar: 'GDP = 52,199 مليار = 5.2199 × 10¹³. نصيب الفرد = 174,850 = 1.7485 × 10⁵. عدد السكان = GDP/نصيب الفرد = (5.2199 × 10¹³)/(1.7485 × 10⁵) = 2.985 × 10⁸ ≈ 3 × 10⁸', en: 'GDP = 5.2199 × 10¹³. Per capita = 1.7485 × 10⁵. Population = GDP/Per capita = (5.2199 × 10¹³)/(1.7485 × 10⁵) = 2.985 × 10⁸ ≈ 3 × 10⁸' }
+    },
+    {
+        id: 17, section: 2, type: 'written',
+        q: { ar: '<strong>س17 (كتابي - مثل السؤال 43):</strong> في أحد الأعوام مؤخراً، كان هناك تقريباً 3.95 مليون مستضيف إنترنت. افترض أن هناك 208 مليون مستخدم للإنترنت. حدد رتبة مقدار مستضيفي الإنترنت ومستخدمي الإنترنت. كم عدد مستخدمي الإنترنت الموجودين بالمقارنة بمستضيفي الإنترنت؟', en: '<strong>Q17 (Written - like Question 43):</strong> Recently, there were approximately 3.95 million web hosts. Assume there are 208 million internet users. Determine the order of magnitude of web hosts and internet users. How many internet users are there compared to web hosts?' },
+        svg: svgGraphs.internet_problem,
+        answer: { ar: 'مستضيفو الإنترنت: 10⁶، المستخدمون: 10⁸، النسبة ≈ 53 مستخدم لكل مستضيف', en: 'Web hosts: 10⁶, Users: 10⁸, Ratio ≈ 53 users per host' },
+        solution: { ar: 'مستضيفو الإنترنت = 3.95 مليون = 3.95 × 10⁶ ≈ 10⁶. المستخدمون = 208 مليون = 2.08 × 10 ≈ 10⁸. النسبة = 10⁸/10⁶ = 10² = 100. أو بدقة: (2.08 × 10⁸)/(3.95 × 10⁶) = 52.7 ≈ 53', en: 'Web hosts = 3.95 million = 3.95 × 10⁶ ≈ 10⁶. Users = 208 million = 2.08 × 10⁸ ≈ 10⁸. Ratio = 10⁸/10 = 100. Or precisely: (2.08 × 10⁸)/(3.95 × 10⁶) = 52.7 ≈ 53' }
+    },
+    {
+        id: 18, section: 2, type: 'written',
+        q: { ar: '<strong>س18 (كتابي):</strong> اكتب العدد 95,000,000,000 في صورة علمية. ما رتبة المقدار؟', en: '<strong>Q18 (Written):</strong> Write 95,000,000,000 in scientific notation. What is the order of magnitude?' },
+        answer: { ar: '9.5 × 10¹، رتبة المقدار: 10¹¹', en: '9.5 × 10¹⁰, Order of magnitude: 10¹¹' },
+        solution: { ar: '95,000,000,000 = 9.5 × 10¹⁰. رتبة المقدار: بما أن 9.5 > 5، نقرّب إلى 10¹¹', en: '95,000,000,000 = 9.5 × 10¹⁰. Order of magnitude: Since 9.5 > 5, round to 10¹¹' }
+    },
+    {
+        id: 19, section: 2, type: 'written',
+        q: { ar: '<strong>س19 (كتابي):</strong> بسّط: (3x²y⁻³z)⁴/(9x⁻¹y²z⁻²)²', en: '<strong>Q19 (Written):</strong> Simplify: (3x²y⁻³z)⁴/(9x⁻¹y²z⁻²)²' },
+        answer: { ar: 'x¹⁰/(9y¹⁶z⁸)', en: 'x¹⁰/(9y¹⁶z⁸)' },
+        solution: { ar: 'البسط: 3⁴(x²)⁴(y⁻³)⁴z⁴ = 81x⁸y⁻¹²z⁴. المقام: 9²(x⁻¹)²(y²)²(z⁻²)² = 81x⁻²y⁴z⁻⁴. الناتج: 81x⁸y⁻¹²z⁴/81x⁻²y⁴z⁻⁴ = x¹⁰y⁻¹⁶z⁸ = x¹⁰/(y¹⁶z⁸)', en: 'Numerator: 81xy⁻¹²z⁴. Denominator: 81x⁻²y⁴z⁻⁴. Result: 81xy⁻¹²z⁴/81x⁻²y⁴z⁻⁴ = x¹⁰y⁻¹⁶z⁸ = x¹⁰/(y¹⁶z⁸)' }
+    },
+    {
+        id: 20, section: 2, type: 'written',
+        q: { ar: '<strong>س20 (كتابي):</strong> اكتب 0.00000045 في صورة علمية.', en: '<strong>Q20 (Written):</strong> Write 0.00000045 in scientific notation.' },
+        answer: { ar: '4.5 × 10⁻⁷', en: '4.5 × 10⁻⁷' },
+        solution: { ar: 'نحرك الفاصلة 7 منازل لليمين: 4.5 × 10⁻⁷', en: 'Move decimal 7 places to the right: 4.5 × 10⁻⁷' }
+    },
+    {
+        id: 21, section: 2, type: 'written',
+        q: { ar: '<strong>س21 (كتابي):</strong> احسب: (2.5 × 10⁸) × (4 × 10⁻³). اكتب الناتج في صورة علمية.', en: '<strong>Q21 (Written):</strong> Calculate: (2.5 × 10⁸) × (4 × 10⁻³). Write the result in scientific notation.' },
+        answer: { ar: '1 × 10⁶', en: '1 × 10⁶' },
+        solution: { ar: '(2.5 × 4) × (10⁸ × 10⁻³) = 10 × 10⁵ = 1 × 10⁶', en: '(2.5 × 4) × (10 × 10⁻³) = 10 × 10⁵ = 1 × 10⁶' }
+    },
+    {
+        id: 22, section: 2, type: 'written',
+        q: { ar: '<strong>س22 (كتابي):</strong> احسب: (6 × 10¹²) ÷ (2 × 10⁴). اكتب الناتج في صورة علمية.', en: '<strong>Q22 (Written):</strong> Calculate: (6 × 10¹²) ÷ (2 × 10⁴). Write the result in scientific notation.' },
+        answer: { ar: '3 × 10⁸', en: '3 × 10⁸' },
+        solution: { ar: '(6/2) × (10¹²/10⁴) = 3 × 10⁸', en: '(6/2) × (10¹²/10) = 3 × 10⁸' }
+    },
+    {
+        id: 23, section: 2, type: 'written',
+        q: { ar: '<strong>س23 (كتابي):</strong> بسّط: (5a⁻²b³c¹)⁻²', en: '<strong>Q23 (Written):</strong> Simplify: (5a⁻²b³c⁻¹)⁻²' },
+        answer: { ar: 'a⁴c²/(25b⁶)', en: 'a⁴c²/(25b⁶)' },
+        solution: { ar: '5²(a⁻²)⁻²(b³)⁻²(c⁻¹)⁻² = (1/25)a⁴b⁻⁶c² = a⁴c²/(25b⁶)', en: '5⁻²(a⁻²)⁻²(b³)⁻²(c⁻¹)⁻² = (1/25)a⁴b⁻⁶c² = a⁴c²/(25b⁶)' }
+    },
+    {
+        id: 24, section: 2, type: 'written',
+        q: { ar: '<strong>س24 (كتابي):</strong> كتلة الأرض تقريباً 5.97 × 10²⁴ kg. اكتب هذا العدد بالصورة العادية.', en: '<strong>Q24 (Written):</strong> Mass of Earth is approximately 5.97 × 10²⁴ kg. Write this number in standard form.' },
+        answer: { ar: '5,970,000,000,000,000,000,000,000 kg', en: '5,970,000,000,000,000,000,000,000 kg' },
+        solution: { ar: 'نحرك الفاصلة 24 منزلة لليمين: 5,970,000,000,000,000,000,000,000 kg', en: 'Move decimal 24 places to the right: 5,970,000,000,000,000,000,000,000 kg' }
+    },
+    {
+        id: 25, section: 2, type: 'written',
+        q: { ar: '<strong>س25 (كتابي):</strong> سرعة الضوء تقريباً 300,000,000 m/s. اكتب هذا العدد في صورة علمية.', en: '<strong>Q25 (Written):</strong> Speed of light is approximately 300,000,000 m/s. Write this number in scientific notation.' },
+        answer: { ar: '3 × 10⁸ m/s', en: '3 × 10⁸ m/s' },
+        solution: { ar: '300,000,000 = 3 × 10⁸ m/s', en: '300,000,000 = 3 × 10⁸ m/s' }
+    }
+];
+
+function showSaveIndicator() {
+    const indicator = document.getElementById('saveIndicator');
+    indicator.classList.add('show');
+    if (saveIndicatorTimeout) clearTimeout(saveIndicatorTimeout);
+    saveIndicatorTimeout = setTimeout(() => indicator.classList.remove('show'), 1500);
+}
+
+function saveState() {
+    try {
+        const answers = {};
+        const writtenAnswers = {};
+        examQuestions.forEach(q => {
+            if (q.type === 'mc') {
+                const selected = document.querySelector('input[name="q'+q.id+'"]:checked');
+                if (selected) answers[q.id] = selected.value;
+            } else {
+                const input = document.getElementById('written_'+q.id);
+                if (input) writtenAnswers[q.id] = input.value;
+            }
+        });
+        const state = {
+            lang: currentLang,
+            studentName: document.getElementById('studentName').value,
+            studentClass: document.getElementById('studentClass').value,
+            examDate: document.getElementById('examDate').value,
+            answers: answers,
+            writtenAnswers: writtenAnswers,
+            timeRemaining: timeRemaining,
+            savedAt: Date.now()
+        };
+        localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
+        showSaveIndicator();
+    } catch (e) { console.error('Save error:', e); }
+}
+
+function loadState() {
+    try {
+        const saved = localStorage.getItem(STORAGE_KEY);
+        return saved ? JSON.parse(saved) : null;
+    } catch (e) { return null; }
+}
+
+function restoreAnswers(answers, writtenAnswers) {
+    if (answers) {
+        for (const [idx, val] of Object.entries(answers)) {
+            const radio = document.querySelector('input[name="q'+idx+'"][value="'+val+'"]');
+            if (radio) radio.checked = true;
+        }
+    }
+    if (writtenAnswers) {
+        for (const [idx, val] of Object.entries(writtenAnswers)) {
+            const input = document.getElementById('written_'+idx);
+            if (input) input.value = val;
+        }
+    }
+}
+
+function clearAllAnswers() {
+    const msg = currentLang === 'ar' ? '⚠️ هل أنت متأكد من مسح جميع الإجابات؟' : '⚠️ Clear all answers?';
+    if (confirm(msg)) {
+        examQuestions.forEach(q => {
+            if (q.type === 'mc') {
+                const radios = document.querySelectorAll('input[name="q'+q.id+'"]');
+                radios.forEach(r => r.checked = false);
+            } else {
+                const input = document.getElementById('written_'+q.id);
+                if (input) {
+                    input.value = '';
+                    input.classList.remove('correct-input', 'incorrect-input');
+                }
+            }
+            const sol = document.getElementById('solution-'+q.id);
+            if (sol) sol.classList.remove('show');
+        });
+        localStorage.removeItem(STORAGE_KEY);
+    }
+}
+
+function setLanguage(lang) {
+    currentLang = lang;
+    document.documentElement.lang = lang;
+    document.documentElement.dir = lang === 'ar' ? 'rtl' : 'ltr';
+    document.getElementById('btn-ar').classList.toggle('active', lang === 'ar');
+    document.getElementById('btn-en').classList.toggle('active', lang === 'en');
+    document.body.classList.toggle('en-mode', lang === 'en');
+    renderExam();
+}
+
+function renderExam() {
+    const container = document.getElementById('exam-content');
+    const labels = { ar: { option: ['أ', 'ب', 'ج', 'د'], answer: '✅ الإجابة:' }, en: { option: ['A', 'B', 'C', 'D'], answer: '✅ Answer:' } };
+    const lbl = labels[currentLang];
+    let html = '';
+    
+    const sectionTitles = {
+        1: { ar: ' القسم 1: أسئلة اختيارية - خصائص قسمة الأسس (Q1-Q15)', en: '🔹 Section 1: Multiple Choice - Properties of Exponents Division (Q1-Q15)' },
+        2: { ar: '🔹 القسم 2: أسئلة كتابية - الكتابة العلمية والمسائل (Q16-Q25)', en: '🔹 Section 2: Written Questions - Scientific Notation & Word Problems (Q16-Q25)' }
+    };
+    
+    const badgeClasses = ['module-1', 'module-2'];
+    
+    for (let sec = 1; sec <= 2; sec++) {
+        html += '<section class="bg-white p-6 rounded-2xl shadow-lg border-2 border-amber-100">';
+        html += '<div class="text-center mb-4"><span class="module-badge ' + badgeClasses[sec-1] + '">' + sectionTitles[sec][currentLang] + '</span></div>';
+        html += '<div class="space-y-6">';
+        
+        examQuestions.filter(q => q.section === sec).forEach((q) => {
+            html += '<div class="border-r-4 border-amber-400 pr-4 py-3" id="question-' + q.id + '">';
+            html += '<div class="mb-3"><span class="arabic-math">' + q.q[currentLang] + '</span></div>';
+            
+            if (q.svg) html += '<div class="graph-container">' + q.svg + '</div>';
+            
+            if (q.type === 'mc') {
+                q.options.forEach((opt, oIdx) => {
+                    html += '<label class="cursor-pointer block mt-2 mr-4 hover:bg-amber-50 rounded-lg p-2 transition">';
+                    html += '<input type="radio" name="q' + q.id + '" value="' + String.fromCharCode(97 + oIdx) + '" class="mr-2 ml-2" onchange="saveState()">';
+                    html += '<span class="arabic-math">' + lbl.option[oIdx] + ') ' + opt[currentLang] + '</span>';
+                    html += '</label>';
+                });
+            } else {
+                html += '<textarea id="written_' + q.id + '" class="answer-input" placeholder="' + (currentLang === 'ar' ? 'اكتب إجابتك هنا...' : 'Write your answer here...') + '" oninput="saveState()"></textarea>';
+            }
+            
+            html += '<div class="flex gap-2 mt-2">';
+            if (q.type === 'mc') {
+                html += '<button onclick="checkAnswer(' + q.id + ')" class="check-btn">' + (currentLang === 'ar' ? '✓ تحقق' : '✓ Check') + '</button>';
+            }
+            html += '<button onclick="toggleSolution(' + q.id + ')" class="show-answer-btn">' + (currentLang === 'ar' ? '📖 أظهر الحل' : '📖 Show Solution') + '</button>';
+            html += '</div>';
+            
+            html += '<div id="solution-' + q.id + '" class="solution-box">';
+            html += '<strong class="text-green-700">' + lbl.answer + ' </strong>';
+            html += '<span class="arabic-math text-green-700">' + q.answer[currentLang] + '</span><br>';
+            if (q.solution) {
+                html += '<span class="text-sm text-green-700 mt-2 block arabic-math">' + q.solution[currentLang] + '</span>';
+            }
+            html += '</div>';
+            
+            html += '</div>';
+        });
+        
+        html += '</div></section>';
+    }
+    
+    container.innerHTML = html;
+}
+
+function checkAnswer(qId) {
+    const q = examQuestions.find(x => x.id === qId);
+    const selected = document.querySelector('input[name="q'+qId+'"]:checked');
+    
+    if (!selected) {
+        alert(currentLang === 'ar' ? '⚠️ الرجاء اختيار إجابة أولاً' : '️ Please select an answer first');
+        return;
+    }
+    
+    const isCorrect = selected.value === String.fromCharCode(97 + q.correct);
+    const radios = document.querySelectorAll('input[name="q'+qId+'"]');
+    radios.forEach(r => {
+        const parent = r.closest('label');
+        if (parent) {
+            parent.classList.remove('correct', 'incorrect');
+            if (r.value === String.fromCharCode(97 + q.correct)) {
+                parent.classList.add('correct');
+            } else if (r.checked) {
+                parent.classList.add('incorrect');
+            }
+        }
+    });
+    
+    const solution = document.getElementById('solution-' + qId);
+    solution.classList.add('show');
+    
+    if (isCorrect) {
+        alert(currentLang === 'ar' ? '✅ إجابة صحيحة! أحسنت!' : '✅ Correct answer! Well done!');
+    } else {
+        alert(currentLang === 'ar' ? '❌ إجابة غير صحيحة. راجع الحل.' : '❌ Incorrect answer. Check the solution.');
+    }
+}
+
+function toggleSolution(qId) {
+    const solution = document.getElementById('solution-' + qId);
+    solution.classList.toggle('show');
+}
+
+function checkAllAnswers() {
+    let correctCount = 0;
+    let mcCorrect = 0;
+    let mcTotal = 0;
+    let writtenAnswered = 0;
+    let writtenTotal = 0;
+    
+    examQuestions.forEach(q => {
+        if (q.type === 'mc') {
+            mcTotal++;
+            const selected = document.querySelector('input[name="q'+q.id+'"]:checked');
+            const li = document.getElementById('question-' + q.id);
+            if (selected) {
+                const isCorrect = selected.value === String.fromCharCode(97 + q.correct);
+                const radios = document.querySelectorAll('input[name="q'+q.id+'"]');
+                radios.forEach(r => {
+                    const parent = r.closest('label');
+                    if (parent) {
+                        parent.classList.remove('correct', 'incorrect');
+                        if (r.value === String.fromCharCode(97 + q.correct)) {
+                            parent.classList.add('correct');
+                        } else if (r.checked) {
+                            parent.classList.add('incorrect');
+                        }
+                    }
+                });
+                if (isCorrect) { mcCorrect++; correctCount++; }
+            }
+        } else {
+            writtenTotal++;
+            const input = document.getElementById('written-'+q.id);
+            if (input && input.value.trim().length > 0) {
+                writtenAnswered++;
+                input.classList.add('correct-input');
+                correctCount++;
+            }
+        }
+    });
+    
+    const mcScore = (mcCorrect / mcTotal) * 60;
+    const writtenScore = (writtenAnswered / writtenTotal) * 40;
+    const totalScore = Math.round(mcScore + writtenScore);
+    
+    alert(currentLang === 'ar' ? 
+        `📊 نتيجتك:\nالاختياري: ${mcCorrect}/${mcTotal} = ${Math.round(mcScore)} درجة\nالكتابي: ${writtenAnswered}/${writtenTotal} أجبت عليها = ${Math.round(writtenScore)} درجة\nالمجموع: ${totalScore}/100` : 
+        `📊 Your score:\nMC: ${mcCorrect}/${mcTotal} = ${Math.round(mcScore)} pts\nWritten: ${writtenAnswered}/${writtenTotal} answered = ${Math.round(writtenScore)} pts\nTotal: ${totalScore}/100`);
+}
+
+function showAllSolutions() {
+    examQuestions.forEach(q => {
+        const solution = document.getElementById('solution-' + q.id);
+        solution.classList.add('show');
+    });
+}
+
+function startTimer() {
+    updateTimerDisplay();
+    timerInterval = setInterval(() => {
+        timeRemaining--;
+        updateTimerDisplay();
+        if (timeRemaining % 60 === 0) saveState();
+        if (timeRemaining <= 600) document.getElementById('timer').classList.add('timer-warning');
+        if (timeRemaining <= 0) {
+            clearInterval(timerInterval);
+            alert(currentLang === 'ar' ? "⏰ انتهى الوقت!" : "⏰ Time's up!");
+            checkAllAnswers();
+        }
+    }, 1000);
+}
+
+function updateTimerDisplay() {
+    const m = Math.floor(timeRemaining / 60);
+    const s = timeRemaining % 60;
+    document.getElementById('timer').textContent = m.toString().padStart(2,'0') + ':' + s.toString().padStart(2,'0');
+}
+
+function gradeExam() {
+    let correctCount = 0;
+    let mcCorrect = 0;
+    let mcTotal = 0;
+    let writtenAnswered = 0;
+    let writtenTotal = 0;
+    const sectionScores = [0, 0];
+    
+    examQuestions.forEach(q => {
+        if (q.type === 'mc') {
+            mcTotal++;
+            const selected = document.querySelector('input[name="q'+q.id+'"]:checked');
+            const li = document.getElementById('question-' + q.id);
+            if (selected) {
+                const isCorrect = selected.value === String.fromCharCode(97 + q.correct);
+                const radios = document.querySelectorAll('input[name="q'+q.id+'"]');
+                radios.forEach(r => {
+                    const parent = r.closest('label');
+                    if (parent) {
+                        parent.classList.remove('correct', 'incorrect');
+                        if (r.value === String.fromCharCode(97 + q.correct)) {
+                            parent.classList.add('correct');
+                        } else if (r.checked) {
+                            parent.classList.add('incorrect');
+                        }
+                    }
+                });
+                if (isCorrect) { mcCorrect++; correctCount++; }
+            }
+        } else {
+            writtenTotal++;
+            const input = document.getElementById('written-'+q.id);
+            if (input && input.value.trim().length > 0) {
+                writtenAnswered++;
+                input.classList.add('correct-input');
+                correctCount++;
+            }
+        }
+    });
+    
+    const mcScore = Math.round((mcCorrect / mcTotal) * 60);
+    const writtenScore = Math.round((writtenAnswered / writtenTotal) * 40);
+    const totalScore = mcScore + writtenScore;
+    
+    document.getElementById('res-total').textContent = totalScore + ' / 100';
+    document.getElementById('res-name').textContent = document.getElementById('studentName').value || (currentLang === 'ar' ? 'بطل' : 'Champion');
+    document.getElementById('res-date').textContent = new Date().toLocaleDateString(currentLang === 'ar' ? 'ar-AE' : 'en-US');
+    
+    const pc = document.getElementById('sections-performance');
+    pc.innerHTML = '';
+    const sectionTitles = {
+        1: { ar: 'أسئلة اختيارية - خصائص الأسس', en: 'Multiple Choice - Exponents' },
+        2: { ar: 'أسئلة كتابية - الكتابة العلمية', en: 'Written - Scientific Notation' }
+    };
+    
+    pc.innerHTML += '<div class="flex justify-between items-center p-3 bg-white rounded-lg"><span class="text-gray-700">' + sectionTitles[1][currentLang] + '</span><span class="font-bold text-amber-700">' + mcScore + '/60</span></div>';
+    pc.innerHTML += '<div class="flex justify-between items-center p-3 bg-white rounded-lg"><span class="text-gray-700">' + sectionTitles[2][currentLang] + '</span><span class="font-bold text-amber-700">' + writtenScore + '/40</span></div>';
+    
+    const badge = document.getElementById('success-badge');
+    document.getElementById('success-percent').textContent = totalScore + '%';
+    
+    if (currentLang === 'ar') {
+        if (totalScore >= 90) { badge.textContent = '🌟 ممتاز جداً!'; badge.className = 'success-badge grade-excellent'; }
+        else if (totalScore >= 75) { badge.textContent = '👏 ممتاز!'; badge.className = 'success-badge grade-good'; }
+        else if (totalScore >= 50) { badge.textContent = '👍 جيد'; badge.className = 'success-badge grade-pass'; }
+        else { badge.textContent = '💪 حاول مرة أخرى'; badge.className = 'success-badge grade-fail'; }
+    } else {
+        if (totalScore >= 90) { badge.textContent = '🌟 Outstanding!'; badge.className = 'success-badge grade-excellent'; }
+        else if (totalScore >= 75) { badge.textContent = '👏 Excellent!'; badge.className = 'success-badge grade-good'; }
+        else if (totalScore >= 50) { badge.textContent = '👍 Good'; badge.className = 'success-badge grade-pass'; }
+        else { badge.textContent = '💪 Try Again'; badge.className = 'success-badge grade-fail'; }
+    }
+    
+    document.getElementById('results-panel').classList.remove('hidden');
+    document.getElementById('results-panel').scrollIntoView({ behavior: 'smooth' });
+    if (timerInterval) clearInterval(timerInterval);
+}
+
+function sendResultsToEmail() {
+    const btn = document.getElementById('sendEmailBtn');
+    const status = document.getElementById('emailStatus');
+    btn.disabled = true;
+    btn.textContent = currentLang === 'ar' ? ' جاري الإرسال...' : ' Sending...';
+    
+    const name = document.getElementById('studentName').value || 'N/A';
+    const studentClass = document.getElementById('studentClass').value || 'N/A';
+    const date = document.getElementById('examDate').value || new Date().toLocaleDateString();
+    const score = document.getElementById('res-total').textContent;
+    const successRate = document.getElementById('success-percent').textContent;
+    const badge = document.getElementById('success-badge').textContent;
+    
+    let answersHTML = '<div style="font-family:Arial; direction:rtl;">';
+    answersHTML += '<h2>📐 ' + (currentLang === 'ar' ? 'نتيجة امتحان خصائص الأسس والكتابة العلمية' : 'Exponents & Scientific Notation Exam Result') + '</h2>';
+    answersHTML += '<p><strong>' + (currentLang === 'ar' ? 'الاسم' : 'Name') + ':</strong> ' + name + '</p>';
+    answersHTML += '<p><strong>' + (currentLang === 'ar' ? 'الشعبة' : 'Class') + ':</strong> ' + studentClass + '</p>';
+    answersHTML += '<p><strong>' + (currentLang === 'ar' ? 'التاريخ' : 'Date') + ':</strong> ' + date + '</p>';
+    answersHTML += '<p><strong>' + (currentLang === 'ar' ? 'الدرجة' : 'Score') + ':</strong> ' + score + ' (' + successRate + '%)</p>';
+    answersHTML += '<p><strong>' + (currentLang === 'ar' ? 'التقدير' : 'Grade') + ':</strong> ' + badge + '</p>';
+    answersHTML += '<hr><h3>' + (currentLang === 'ar' ? 'تفاصيل الإجابات:' : 'Answer Details:') + '</h3><table style="width:100%; border-collapse:collapse;">';
+    answersHTML += '<tr style="background:#d97706; color:white;"><th style="padding:8px; border:1px solid #ddd;">#</th><th style="padding:8px; border:1px solid #ddd;">' + (currentLang === 'ar' ? 'السؤال' : 'Question') + '</th><th style="padding:8px; border:1px solid #ddd;">' + (currentLang === 'ar' ? 'إجابة الطالب' : 'Student Answer') + '</th><th style="padding:8px; border:1px solid #ddd;">' + (currentLang === 'ar' ? 'الصحيحة' : 'Correct') + '</th><th style="padding:8px; border:1px solid #ddd;">' + (currentLang === 'ar' ? 'النتيجة' : 'Result') + '</th></tr>';
+    
+    examQuestions.forEach(q => {
+        let userAnswer = '';
+        let isCorrect = false;
+        if (q.type === 'mc') {
+            const selected = document.querySelector('input[name="q'+q.id+'"]:checked');
+            if (selected) {
+                const si = selected.value.charCodeAt(0) - 97;
+                userAnswer = q.options[si][currentLang];
+                isCorrect = selected.value === String.fromCharCode(97 + q.correct);
+            } else {
+                userAnswer = currentLang === 'ar' ? 'لم يجب' : 'No answer';
+            }
+        } else {
+            const input = document.getElementById('written-'+q.id);
+            userAnswer = input ? input.value.trim() : (currentLang === 'ar' ? 'لم يجب' : 'No answer');
+            isCorrect = userAnswer.length > 0;
+        }
+        const rowBg = isCorrect ? '#dcfce7' : '#fee2e2';
+        answersHTML += '<tr style="background:' + rowBg + ';"><td style="padding:8px; border:1px solid #ddd; text-align:center;">' + q.id + '</td><td style="padding:8px; border:1px solid #ddd;">' + q.q[currentLang].replace(/<[^>]+>/g, '') + '</td><td style="padding:8px; border:1px solid #ddd;">' + userAnswer + '</td><td style="padding:8px; border:1px solid #ddd;">' + q.answer[currentLang] + '</td><td style="padding:8px; border:1px solid #ddd; text-align:center;">' + (isCorrect ? '✅' : '❌') + '</td></tr>';
+    });
+    
+    answersHTML += '</table></div>';
+    
+    const templateParams = {
+        to_email: TARGET_EMAIL,
+        student_name: name,
+        student_class: studentClass,
+        exam_date: date,
+        total_score: score,
+        success_rate: successRate,
+        grade: badge,
+        answers_table: answersHTML
+    };
+    
+    emailjs.send(SERVICE_ID, TEMPLATE_ID, templateParams)
+        .then(() => {
+            status.textContent = currentLang === 'ar' ? '✅ تم الإرسال بنجاح!' : '✅ Sent successfully!';
+            status.style.color = '#16a34a';
+            btn.textContent = currentLang === 'ar' ? '✓ تم' : '✓ Sent';
+            alert(currentLang === 'ar' ? 'تم إرسال النتيجة للمعلم بنجاح!' : 'Result sent to teacher successfully!');
+        })
+        .catch((error) => {
+            status.textContent = currentLang === 'ar' ? '❌ فشل الإرسال' : '❌ Failed to send';
+            status.style.color = '#dc2626';
+            btn.disabled = false;
+            btn.textContent = currentLang === 'ar' ? '📧 حاول مرة أخرى' : '📧 Try Again';
+            alert(currentLang === 'ar' ? 'فشل الإرسال: ' + error.text : 'Failed: ' + error.text);
+        });
+}
+
+window.addEventListener('DOMContentLoaded', () => {
+    const saved = loadState();
+    if (saved) {
+        currentLang = saved.lang || 'ar';
+        timeRemaining = saved.timeRemaining !== undefined ? saved.timeRemaining : TOTAL_TIME;
+        document.getElementById('btn-ar').classList.toggle('active', currentLang === 'ar');
+        document.getElementById('btn-en').classList.toggle('active', currentLang === 'en');
+        document.body.classList.toggle('en-mode', currentLang === 'en');
+    }
+    renderExam();
+    if (saved) {
+        if (saved.studentName) document.getElementById('studentName').value = saved.studentName;
+        if (saved.studentClass) document.getElementById('studentClass').value = saved.studentClass;
+        if (saved.examDate) document.getElementById('examDate').value = saved.examDate;
+        if (saved.answers || saved.writtenAnswers) restoreAnswers(saved.answers, saved.writtenAnswers);
+    }
+    startTimer();
+    window.addEventListener('beforeunload', () => saveState());
+});
+</script>
+</body>
+</html>
